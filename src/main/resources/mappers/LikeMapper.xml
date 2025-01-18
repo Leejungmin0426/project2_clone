@@ -15,20 +15,21 @@
         WHERE user_id = #{userId} AND aca_id = #{acaId}
     </delete>
 
-    <!-- 특정 학원의 좋아요를 누른 유저들의 프로필 사진 조회 -->
-    <select id="getLikedUserPics">
-        SELECT DISTINCT u.user_pic
+    <!-- 특정 학원을 좋아요한 유저들의 ID와 프로필 사진 조회 -->
+    <select id="getLikedUserDetails">
+        SELECT u.user_id AS userId, u.user_pic AS userPic
         FROM `like` l
         JOIN user u ON l.user_id = u.user_id
         WHERE l.aca_id = #{acaId}
     </select>
 
-    <!-- 특정 유저가 좋아요한 학원 목록 조회 -->
-    <select id="getUserLikedAcademies">
-        SELECT aca_id
-        FROM `like`
-        WHERE user_id = #{userId}
-    </select>
 
+    <!-- 특정 유저가 좋아요한 학원의 ID와 사진 조회 -->
+    <select id="getUserLikesWithPics">
+        SELECT a.aca_id AS acaId, a.aca_pic AS acaPic
+        FROM `like` l
+        JOIN academy a ON l.aca_id = a.aca_id
+        WHERE l.user_id = #{userId}
+    </select>
 
 </mapper>

@@ -8,11 +8,8 @@ import lombok.Setter;
 @Setter
 @Schema(description = "리뷰 등록 요청")
 public class ReviewPostReq {
-    @Schema(title = "유저 ID", description = "리뷰를 작성하는 유저의 ID", example = "2020")
-    private long userId;
-
-    @Schema(title = "수업 ID", description = "리뷰를 등록할 수업의 ID", example = "1")
-    private long classId;
+    @Schema(title = "수업 참여 ID", description = "수업 참여의 고유 ID", example = "2", required = true)
+    private Long joinClassId;
 
     @Schema(title = "리뷰 내용", description = "작성할 리뷰 내용", example = "수업이 매우 유익했습니다!")
     private String comment;
